@@ -1,0 +1,9 @@
+<template name="ApplicationLayout">
+	{{> loginButtons}}
+	{{#if currentUser}}
+		<!-- nav -->
+		<a href="/admin">home</a>
+		<a href="/checkin">Check-in</a>
+		{{> yield}}
+	{{/if}}
+</template>
