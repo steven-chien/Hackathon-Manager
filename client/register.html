@@ -1,0 +1,12 @@
+<template name="Register">
+	<input type="file" id="csv-file" name="files"/>
+	<input type="submit" id="read" value="read">
+	<input type="button" id="clear" value="clear">
+	<form>
+		<tr><th>StudentID</th><th>First Name</th><th>Last Name</th><th>Department</th><th>Year</th></tr>
+		{{#each participants}}
+		<tr><td>{{StudentID}}</td><td>{{FirstName}}</td><td>{{LastName}}</td><td>{{Department}}</td><td>{{Year}}</td></tr>
+		{{/each}}
+	</form>
+	<input type="submit" id="submit" value="submit">
+</template>
