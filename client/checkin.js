@@ -1,3 +1,7 @@
+Template.CheckIn.onCreated(function(){
+	this.subscribe('states'); 
+});
+
 Template.CheckIn.helpers({
 	checkedPlayer: function() {
 		var userId = Meteor.userId();
