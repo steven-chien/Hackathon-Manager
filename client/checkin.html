@@ -1,4 +1,12 @@
 <template name="CheckIn">
-	<input type="text" id="student_id">
-	<input type="submit" id="submit" value="Go">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+	{{#if currentUser}}
+	<form>
+		<input type="text" id="student_id">
+		<input type="submit" id="submit" value="Go">
+	</form>
+	{{checkedPlayer.student_id}}
+	<div id="code"></div>
+	<input type="button" id="clear" value="clear">
+	{{/if}}
 </template>
