@@ -2,4 +2,11 @@
 	<div style="max-width: 500px">
 	{{> qrScanner}}
 	</div>
+	<div id="grouping">
+		<ul>
+		{{#each groupmates}}
+		<li id="member_{{@index}}">{{sid}}</li>
+		{{/each}}
+		</ul>
+	</div>
 </template>
