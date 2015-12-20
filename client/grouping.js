@@ -12,12 +12,12 @@ Template.qrScanner.rendered = function() {
 			}
 		}
 	});
-}
+};
 
 Template.Grouping.rendered = function() {
 	Meteor.subscribe('playerList');
 	Session.set('members', []);
-}
+};
 
 Template.Grouping.helpers({
 	groupmates: function() {
@@ -25,8 +25,8 @@ Template.Grouping.helpers({
 		if(userId) {
 			var members = Session.get('members');
 			if(members) {
-				return Players.find({ sid: {  $in: members } });
+				return Players.find({ sid: { $in: members } });
 			}
 		}
 	}
-})
+});
