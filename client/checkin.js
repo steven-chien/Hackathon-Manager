@@ -15,19 +15,24 @@ Template.CheckIn.helpers({
 Template.CheckIn.events({
 	'click #submit': function(evt) {
 		evt.preventDefault();
+		$('#code').empty();
+		Session.set('checked_in', undefined);
 		var student_id = $('#student_id').val();
 		Meteor.call('checkin', student_id, function(err, data) {
 			if (err) {
-				console.log(err);
+				alert(err);
+				$('#student_id').val('');
 			}
 			else {
-				$('#code').qrcode("https://www.google.com.hk");
-				Session.set('checked_in', data);
+				console.log(Meteor.absoluteUrl() + 'vote/' + data.id);
+				$('#code').qrcode(Meteor.absoluteUrl() + 'vote/' + data.id);
+				Session.set('checked_in', data.data);
 			}
 		});
 	},
 	'click #clear': function() {
 		$('#code').empty();
+		$('#student_id').val('');
 		Session.set('checked_in', undefined);
 	},
 });

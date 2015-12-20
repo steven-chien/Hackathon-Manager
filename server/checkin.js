@@ -12,8 +12,14 @@ Meteor.methods({
 				vote: null,
 				group: false
 			});
-			console.log(affected);
-			return student;
+
+			if(affected.insertId) {
+				return { data: student, id: affected.insertId };
+			}
+			else {
+				var id = Players.findOne({ sid: student.student_id });
+				return { data: student, id: id._id };
+			}
 		}
 		else {
 			throw new Meteor.Error(400,'ID not registered!');
