@@ -8,4 +8,4 @@ Meteor.publish('playerList', function() {
 	if(this.userId) {
 		return Players.find({ group: false });
 	}
-})
+});
