@@ -9,7 +9,8 @@ Meteor.methods({
 				sid: student.student_id,
 				f_name: student.f_name,
 				l_name: student.l_name,
-				vote: null
+				vote: null,
+				group: false
 			});
 			console.log(affected);
 			return student;
