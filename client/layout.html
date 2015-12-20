@@ -1,9 +1,12 @@
 <template name="ApplicationLayout">
-	{{> loginButtons}}
 	{{#if currentUser}}
+	{{> loginButtons}}
 		<!-- nav -->
 		<a href="/admin">home</a>
 		<a href="/checkin">Check-in</a>
-		{{> yield}}
+		<a href="/grouping">Grouping</a>
+		<a href="/polling">Polling</a>
+		<a href="/register">Register</a>
 	{{/if}}
+	{{> yield}}
 </template>
