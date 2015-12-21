@@ -4,7 +4,7 @@ Meteor.methods({
 		if(userId && data) {
 			for(var i=0; i<data.length; i++) {
 				Profiles.upsert({
-					student_id: data[i].StudentId
+					student_id: data[i].StudentID
 				},{
 					student_id: data[i].StudentID,
 					f_name: data[i].FirstName,
