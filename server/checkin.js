@@ -4,23 +4,21 @@ Meteor.methods({
 		if(userId) {
 			var student = Profiles.findOne({ student_id: student_id });
 			if(student) {
-				var affected = Players.upsert({ 
-					id: student._id 
-				}, {
-					id: student._id,
-					sid: student.student_id,
-					f_name: student.f_name,
-					l_name: student.l_name,
-					vote: null,
-					group: false
-				});
-	
-				if(affected.insertId) {
-					return { data: student, id: affected.insertId };
+				var player = Players.findOne({ id: student._id });
+				if(player) {
+					return { data: student, id: player._id };
 				}
 				else {
-					var id = Players.findOne({ sid: student.student_id });
-					return { data: student, id: id._id };
+					Players.insert({
+						id: student._id,
+						sid: student.student_id,
+						f_name: student.f_name,
+						l_name: student.l_name,
+						vote: null,
+						group: false
+					}, function(err, result) {
+						return { data: student, id: result };
+					});
 				}
 			}
 			else {
