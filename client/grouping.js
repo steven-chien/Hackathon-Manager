@@ -1,6 +1,29 @@
+Template.qrScanner.rendered = function() {
+	qrScanner.on('scan', function(err, message) {
+		if (message != null) {
+			console.log(message);
+			var pattern = new RegExp(Session.get('pattern'), 'g');
+			console.log(pattern);
+			var matched = pattern.exec(message);
+			console.log(matched);
+			var id = Players.findOne(matched[1]);
+			console.log(id);
+			if(id) {
+				var members = Session.get('members');
+				if(members.indexOf(matched[1])==-1) {
+					members.push(matched[1]);
+					Session.set('members', members);
+				}
+			}
+		      
+		}
+	});
+};
+
 Template.Grouping.rendered = function() {
 	/* hardcode for testing */
-	var url = Meteor.absoluteUrl();
+	//var url = Meteor.absoluteUrl();
+	var url = 'http://localhost:3000/';
 	var url = '\^' + url + 'vote\/(\\w+)$';
 	Session.set('pattern', url);
 	Meteor.subscribe('playerList');
