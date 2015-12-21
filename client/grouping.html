@@ -1,12 +1,14 @@
 <template name="Grouping">
-	<div style="max-width: 500px">
-	{{> qrScanner}}
-	</div>
 	<div id="grouping">
-		<ul>
-		{{#each groupmates}}
-		<li id="member_{{@index}}">{{sid}}</li>
-		{{/each}}
-		</ul>
+		<form>
+			<input type="text" id="name">
+			<ul>
+				{{#each groupmates}}
+				<li class="player" id="{{@index}}">{{sid}}</li>
+				{{/each}}
+			</ul>
+			<input type="button" id="scan" value="scan">
+			<input type="submit" id="submit" value="submit">
+		</form>
 	</div>
 </template>
