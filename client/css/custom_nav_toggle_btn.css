@@ -1,0 +1,109 @@
+#navbar-custom-btn-base{
+  z-index: 4000 !important;
+  cursor: pointer;
+}
+#navbar-custom-toggle-btn {
+  width: 40px;
+  height: 29px;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  margin: 10px;
+}
+
+#navbar-custom-toggle-btn span{
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: rgb(67,67,69);
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .25s ease-in-out;
+  -moz-transition: .25s ease-in-out;
+  -o-transition: .25s ease-in-out;
+  transition: .25s ease-in-out;
+}
+#navbar-custom-toggle-btn .light{
+  background: rgb(247,248,249);
+}
+#navbar-custom-toggle-btn span:nth-child(1) {
+  top: 0px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+#navbar-custom-toggle-btn span:nth-child(2) {
+  top: 12px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+#navbar-custom-toggle-btn span:nth-child(3) {
+  top: 24px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+#navbar-custom-toggle-btn.toggle span:nth-child(1) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: -2px;
+  left: 6px;
+}
+
+#navbar-custom-toggle-btn.toggle span:nth-child(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+#navbar-custom-toggle-btn.toggle span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 27px;
+  left: 6px;
+}
+@media (max-width: 767px) {
+  #navbar-custom-toggle-btn .light{
+    background: rgb(67,67,69);
+  }
+  #navbar-custom-btn-base{
+    position: fixed;
+    top: 0px;
+    right: 5px;
+  }
+}
+@media (min-width: 768px) {
+  #navbar-custom-btn-base{
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+  }
+  .navbar-custom-btn-base-background{
+    background-color: rgba(247,248,249,0.8);
+  }
+}
