@@ -1,12 +1,38 @@
 <template name="ApplicationLayout">
-	{{#if currentUser}}
-	{{> loginButtons}}
+    <style href="css/custom_global.css" type="text/css"></style>
+    <style href="css/custom_nav.css" type="text/css"></style>
+    <style href="css/custom_nav_toggle_btn.css" type="text/css"></style>
+    <style href="css/custom_form.css" type="text/css"></style>
 		<!-- nav -->
-		<a href="/admin">home</a>
-		<a href="/checkin">Check-in</a>
-		<a href="/grouping">Grouping</a>
-		<a href="/polling">Polling</a>
-		<a href="/register">Register</a>
-	{{/if}}
-	{{> yield}}
+        <nav class="navbar navbar-default navbar-fixed-top navbar_custom">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">PolyHack</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse {{navToggle}}" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+    {{#if currentUser}}
+                        <li role="presentation"><a href="/admin">home</a></li>
+                        <li role="presentation"><a href="/checkin">Check-in</a></li>
+                        <li role="presentation"><a href="/grouping">Grouping</a></li>
+                        <li role="presentation"><a href="/polling">Polling</a></li>
+                        <li role="presentation"><a href="/register">Register</a></li>
+                        <li role="presentation">{{> loginButtons}}</li>
+    {{/if}}
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    <div id="navbar-custom-btn-base"><div id="navbar-custom-toggle-btn" class="{{navToggle}}">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div></div>
+    <div class="warp">
+        {{> yield}}
+    </div>
 </template>
