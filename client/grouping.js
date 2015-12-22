@@ -16,6 +16,11 @@ Template.Grouping.helpers({
 				return Players.find({ _id: { $in: members } });
 			}
 		}
+	},
+	groups: function () {
+		var userId = Meteor.userId();
+		if(userId) {
+		}
 	}
 });
 
@@ -49,6 +54,11 @@ Template.Grouping.events({
 				}
 			);
 		}
+	},
+	'click #add': function() {
+		var sid = $('#new-sid').val();
+		var record = Profiles.find({student_id: sid});
+		console.log(record);
 	},
 	'click .player': function(evt) {
 		var userId = Meteor.userId();
