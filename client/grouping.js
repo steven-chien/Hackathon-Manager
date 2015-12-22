@@ -2,6 +2,7 @@ Template.qrScanner.rendered = function() {
 	qrScanner.on('scan', function(err, message) {
 		if (message != null) {
 			console.log(message);
+			alert(message);
 			var pattern = new RegExp(Session.get('pattern'), 'g');
 			console.log(pattern);
 			var matched = pattern.exec(message);
@@ -22,9 +23,8 @@ Template.qrScanner.rendered = function() {
 
 Template.Grouping.rendered = function() {
 	/* hardcode for testing */
-	//var url = Meteor.absoluteUrl();
-	var url = 'http://localhost:3000/';
-	var url = '\^' + url + 'vote\/(\\w+)$';
+	var url = Meteor.absoluteUrl();
+	url = '\^' + url + 'vote\/(\\w+)$';
 	Session.set('pattern', url);
 	Meteor.subscribe('playerList');
 	Session.set('members', []);
@@ -43,36 +43,6 @@ Template.Grouping.helpers({
 });
 
 Template.Grouping.events({
-	'click #scan': function(evt) {
-		var userId = Meteor.userId();
-		if(userId) {
-			cordova.plugins.barcodeScanner.scan(
-				function(result) {
-					if(!result.cancel) {
-						Meteor.call('log', result.text);
-						var pattern = new RegExp(Session.get('pattern'), 'g');
-						Meteor.call('log', Session.get('pattern'));
-						var matched = pattern.exec(result.text);
-						Meteor.call('log', matched);
-						var id = Players.findOne(matched[1]);
-						if(id) {
-							var members = Session.get('members');
-							if(members.indexOf(matched[1])==-1) {
-								members.push(matched[1]);
-								Session.set('members', members);
-							}
-						}
-					}
-					else {
-						alert('Scan cancelled!');
-					}
-				},
-				function(error) {
-					alert(error);
-				}
-			);
-		}
-	},
 	'click .player': function(evt) {
 		var userId = Meteor.userId();
 		if(userId) {
