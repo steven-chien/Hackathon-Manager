@@ -14,12 +14,12 @@
                 <div class="collapse navbar-collapse {{navToggle}}" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
     {{#if currentUser}}
-                        <li role="presentation"><a href="/admin">home</a></li>
+                        <li role="presentation"><a href="/admin">Home</a></li>
                         <li role="presentation"><a href="/checkin">Check-in</a></li>
                         <li role="presentation"><a href="/grouping">Grouping</a></li>
                         <li role="presentation"><a href="/polling">Polling</a></li>
                         <li role="presentation"><a href="/register">Register</a></li>
-                        <li role="presentation">{{> loginButtons}}</li>
+                        <li role="presentation"><a>{{> loginButtons}}</a></li>
     {{/if}}
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -32,7 +32,7 @@
         <span></span>
         <span></span>
     </div></div>
-    <div class="warp">
+    <div class="warp container-fluid">
         {{> yield}}
     </div>
 </template>
