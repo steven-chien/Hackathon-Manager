@@ -50,8 +50,20 @@ Template.Grouping.helpers({
 Template.Grouping.events({
 	'click #add': function() {
 		var sid = $('#new-sid').val();
-		var record = Profiles.find({student_id: sid});
-		console.log(record);
+		var id = Players.findOne({ sid: sid });
+
+		if(id) {
+			var members = Session.get('members');
+			if(members.indexOf(id._id)==-1) {
+				members.push(id._id);
+				Session.set('members', members);
+			}
+		}
+		else {
+			alert(sid+" not found!");
+		}
+
+		$('#new-sid').val('');
 	},
 	'click .player': function(evt) {
 		var userId = Meteor.userId();
