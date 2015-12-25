@@ -27,6 +27,7 @@ Template.Grouping.rendered = function() {
 	url = '\^' + url + 'vote\/(\\w+)$';
 	Session.set('pattern', url);
 	Meteor.subscribe('playerList');
+	Meteor.subscribe('groupList');
 	Session.set('members', []);
 };
 
@@ -43,12 +44,24 @@ Template.Grouping.helpers({
 	groups: function () {
 		var userId = Meteor.userId();
 		if(userId) {
+			var groups = Groups.find();
+			var groupNames = [];
+			var i = 0;
+			groups.forEach(function(g) {
+				groupNames[i] = Object();
+				groupNames[i].name = g.name;
+				groupNames[i].count = g.members.length;
+				i++;
+			});
+			console.log(groupNames);
+			return groupNames;
 		}
 	}
 });
 
 Template.Grouping.events({
-	'click #add': function() {
+	'click #add': function(evt) {
+		evt.preventDefault();
 		var sid = $('#new-sid').val();
 		var id = Players.findOne({ sid: sid });
 

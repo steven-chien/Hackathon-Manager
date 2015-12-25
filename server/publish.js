@@ -9,3 +9,9 @@ Meteor.publish('playerList', function() {
 		return Players.find({ group: false });
 	}
 });
+
+Meteor.publish('groupList', function() {
+	if(this.userId) {
+		return Groups.find();
+	}
+})
