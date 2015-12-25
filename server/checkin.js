@@ -12,8 +12,9 @@ Meteor.methods({
 					Players.insert({
 						id: student._id,
 						sid: student.student_id,
-						f_name: student.f_name,
-						l_name: student.l_name,
+						name: student.name,
+						dept: student.dept,
+						phone: student.phone,
 						vote: null,
 						group: false
 					}, function(err, result) {

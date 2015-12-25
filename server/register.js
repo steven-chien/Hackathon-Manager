@@ -7,8 +7,10 @@ Meteor.methods({
 					student_id: data[i].StudentID
 				},{
 					student_id: data[i].StudentID,
-					f_name: data[i].FirstName,
-					l_name: data[i].LastName,
+					name: data[i].Name,
+					year: data[i].Year,
+					email: data[i].Email,
+					phone: data[i].Phone,
 					dept: data[i].Department
 				});
 			}

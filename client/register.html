@@ -3,9 +3,9 @@
 	<input type="submit" id="read" value="read" class="btn btn-success">
 	<input type="button" id="clear" value="clear" class="btn btn-danger">
 	<table class="table">
-		<tr><th>StudentID</th><th>First Name</th><th>Last Name</th><th>Department</th><th>Year</th></tr>
+		<tr><th>StudentID</th><th>Name</th><th>Year</th><th>Department</th><th>Email</th><th>Phone</th></tr>
 		{{#each participants}}
-		<tr><td>{{StudentID}}</td><td>{{FirstName}}</td><td>{{LastName}}</td><td>{{Department}}</td><td>{{Year}}</td></tr>
+		<tr><td>{{StudentID}}</td><td>{{Name}}</td><td>{{Year}}</td><td>{{Department}}</td><td>{{Email}}</td><td>{{Phone}}</td></tr>
 		{{/each}}
 	</table>
 	<input type="submit" id="submit" value="submit" class="btn btn-primary">

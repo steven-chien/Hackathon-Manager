@@ -14,6 +14,7 @@ Template.Register.events({
 		Papa.parse(template.find('#csv-file').files[0], {
 			header: true,
 			complete: function(results) {
+				console.log(results);
 				Session.set('parsed_csv', results);
 			},
 			skipEmptyLines: true
