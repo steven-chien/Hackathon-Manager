@@ -92,6 +92,7 @@ Template.Grouping.events({
 		}
 	},
 	'click #submit': function(evt) {
+		evt.preventDefault();
 		var userId = Meteor.userId();
 		if(userId) {
 			var members = Session.get('members');
