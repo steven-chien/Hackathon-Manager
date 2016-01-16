@@ -62,6 +62,8 @@ Template.Grouping.helpers({
 Template.Grouping.events({
 	'click #add': function(evt) {
 		evt.preventDefault();
+		Meteor.subscribe('playerList');
+
 		var sid = $('#new-sid').val();
 		var id = Players.findOne({ sid: sid });
 

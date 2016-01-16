@@ -1,3 +1,12 @@
 <template name="Vote">
 vote
+{{#if voted}}
+<p>You have already voted</p>
+{{else}}
+<ul>
+	{{#each voteGroups}}
+	<li>{{name}} <button id="vote" action="submit">Vote</button></li>
+	{{/each}}
+</ul>
+{{/if}}
 </template>
