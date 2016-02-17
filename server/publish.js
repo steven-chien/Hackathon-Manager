@@ -4,6 +4,12 @@ Meteor.publish('states', function() {
 	}
 });
 
+Meteor.publish('all_participants', function() {
+	if(this.userId) {
+		return Profiles.find();
+	}
+});
+
 Meteor.publish('playerList', function() {
 	if(this.userId) {
 		//return Players.find({ group: false });

@@ -19,4 +19,12 @@
 		dept<input type="text" id="dept">
 		<input type="button" id="apply" value="submit">
 	</form>
+        <table border="1" width="100%">
+
+        {{#each all_participants}}
+            <tr>
+                <td>{{_id}}  </td><td> {{student_id}} </td><td> {{name}} </td>
+            </tr>
+        {{/each}}
+        </table>
 </template>

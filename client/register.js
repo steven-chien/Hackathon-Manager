@@ -1,3 +1,6 @@
+Template.Register.rendered = function() {
+    Meteor.subscribe('all_participants');
+};
 Template.Register.helpers({
 	participants: function() {
 		var userId = Meteor.userId();
@@ -6,7 +9,12 @@ Template.Register.helpers({
 			if(result)
 				return result.data;
 		}
-	}
+	},
+        all_participants: function() {
+                console.log("!!!");
+                console.log(Profiles.find());
+                return Profiles.find();
+        }
 });
 
 Template.Register.events({
