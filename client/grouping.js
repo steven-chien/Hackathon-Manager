@@ -101,6 +101,7 @@ Template.Grouping.events({
 			var name = $('#name').val();
 			if(name!='' && members.length!=0) {
 				Meteor.call('addGroup', name, members);
+				Session.set('members', []);
 			}
 		}
 	}
