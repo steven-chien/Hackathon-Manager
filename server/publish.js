@@ -6,7 +6,8 @@ Meteor.publish('states', function() {
 
 Meteor.publish('playerList', function() {
 	if(this.userId) {
-		return Players.find({ group: false });
+		//return Players.find({ group: false });
+		return Players.find();
 	}
 });
 

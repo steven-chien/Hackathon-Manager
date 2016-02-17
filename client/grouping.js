@@ -50,10 +50,15 @@ Template.Grouping.helpers({
 			groups.forEach(function(g) {
 				groupNames[i] = Object();
 				groupNames[i].name = g.name;
-				groupNames[i].count = g.members.length;
+                                groupNames[i].namelist = '';
+                                g.members.forEach(function(h) {
+                                    var h_name = Players.findOne({_id: h});
+                                    if(typeof h_name != 'undefined')
+                                        groupNames[i].namelist += h_name.sid+' '+h_name.name+'<br>';
+                                });
+				groupNames[i]._id = g._id;
 				i++;
 			});
-			console.log(groupNames);
 			return groupNames;
 		}
 	}
@@ -67,7 +72,14 @@ Template.Grouping.events({
 		var sid = $('#new-sid').val();
 		var id = Players.findOne({ sid: sid });
 
+        
 		if(id) {
+                        //check if the player is already in other team
+                        if(Groups.find({'members':id._id}).count()>0) {
+                            alert(sid+" already in other groups");
+                            return;
+                        }
+
 			var members = Session.get('members');
 			if(members.indexOf(id._id)==-1) {
 				members.push(id._id);
@@ -104,5 +116,11 @@ Template.Grouping.events({
 				Session.set('members', []);
 			}
 		}
-	}
+	},
+        'click #delgroup': function(evt) {
+		event.preventDefault();
+		Meteor.call('delgroup', this._id, function(err, data) {
+			Meteor._reload.reload();
+		});
+        }
 });
