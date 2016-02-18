@@ -1,25 +1,24 @@
 Template.qrScanner.rendered = function() {
 	qrScanner.on('scan', function(err, message) {
 		if (message != null) {
-			console.log(message);
-			HTTP.call("GET", "http://api.longurl.org/v2/expand?",
-				{ url: message },
-				function (error, data) {
-					if (!error) {
-						alert(data);
-						var pattern = new RegExp(Session.get('pattern'), 'g');
-						var matched = pattern.exec(url);
-						var profile = Players.findOne(matched[1]);
-						if(profile && profile.group==false) {
-							var members = Session.get('members');
-							if(members.indexOf(matched[1])==-1) {
-								members.push(matched[1]);
-								Session.set('members', members);
-							}
+			HTTP.get('https://www.googleapis.com/urlshortener/v1/url', { params: { "key": Meteor.settings.public.googleApiKey, "shortUrl": message } }, function(err, data) {
+				if(!err && data.statusCode==200) {
+					var url = data.data.longUrl;
+					var pattern = new RegExp(Session.get('pattern'), 'g');
+					var matched = pattern.exec(url);
+					var profile = Players.findOne(matched[1]);
+					if(profile && profile.group==false) {
+						var members = Session.get('members');
+						if(members.indexOf(matched[1])==-1) {
+							members.push(matched[1]);
+							Session.set('members', members);
 						}
 					}
 				}
-			);
+				else {
+					alert(err);
+				}
+			});
 		      
 		}
 	});
