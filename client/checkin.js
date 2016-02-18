@@ -27,6 +27,8 @@ Template.CheckIn.events({
 				console.log(Meteor.absoluteUrl() + 'vote/' + data.id);
 				$('#code').qrcode(Meteor.absoluteUrl() + 'vote/' + data.id);
 				Session.set('checked_in', data.data);
+				$('#student_id').val('');
+				$('#student_id').focus();
 			}
 		});
 	},
