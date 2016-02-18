@@ -24,12 +24,11 @@ Template.CheckIn.events({
 				$('#student_id').val('');
 			}
 			else {
-				console.log(data._id);
-				console.log(Meteor.absoluteUrl() + 'vote/' + data.data._id);
-				$('#code').qrcode(Meteor.absoluteUrl() + 'vote/' + data.data._id);
+				console.log(data.data);
 				Session.set('checked_in', data.data);
 				$('#student_id').val('');
 				$('#student_id').focus();
+				$('#code').qrcode(data.data.url);
 			}
 		});
 	},
