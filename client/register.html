@@ -8,11 +8,11 @@
 	<input type="button" id="clear" value="clear" class="btn btn-danger">
 	<table class="table">
         <thead>
-        <tr><th>StudentID</th><th>Name</th><th>Year</th><th>Department</th><th>Email</th><th>Phone</th></tr>
+        <tr><th>StudentID</th><th>Name</th><th>Year</th><th>Department</th><th>Phone</th></tr>
         </thead>
         <tbody>
         {{#each participants}}
-            <tr><td>{{StudentID}}</td><td>{{Name}}</td><td>{{Year}}</td><td>{{Department}}</td><td>{{Email}}</td><td>{{Phone}}</td></tr>
+            <tr><td>{{StudentID}}</td><td>{{Name}}</td><td>{{Year}}</td><td>{{Department}}</td><td>{{Phone}}</td></tr>
         {{/each}}
         </tbody>
 	</table>
@@ -30,10 +30,6 @@
         <div class="form-group">
             <label for="year">Year</label>
             <input type="number" id="year" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" class="form-control">
         </div>
         <div class="form-group">
             <label for="phone">Phone No.</label>
@@ -56,7 +52,7 @@
             <tbody>
             {{#each all_participants}}
                 <tr>
-                    <td>{{_id}}  </td><td> {{student_id}} </td><td> {{name}} </td>
+                    <td>{{_id}}  </td><td> {{sid}} </td><td> {{name}} </td><td> {{dept}} </td>
                 </tr>
             {{/each}}
             </tbody>

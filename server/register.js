@@ -3,15 +3,16 @@ Meteor.methods({
 		var userId = Meteor.userId();
 		if(userId && data) {
 			for(var i=0; i<data.length; i++) {
-				Profiles.upsert({
-					student_id: data[i].StudentID
+				Players.upsert({
+					sid: data[i].StudentId
 				},{
-					student_id: data[i].StudentID,
+					sid: data[i].StudentId,
 					name: data[i].Name,
 					year: data[i].Year,
-					email: data[i].Email,
 					phone: data[i].Phone,
-					dept: data[i].Department
+					dept: data[i].Department,
+					group: false,
+					checked: false
 				});
 			}
 		}

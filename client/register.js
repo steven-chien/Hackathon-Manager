@@ -1,6 +1,7 @@
 Template.Register.rendered = function() {
-    Meteor.subscribe('all_participants');
+    Meteor.subscribe('playerList');
 };
+
 Template.Register.helpers({
 	participants: function() {
 		var userId = Meteor.userId();
@@ -11,9 +12,9 @@ Template.Register.helpers({
 		}
 	},
         all_participants: function() {
-                console.log("!!!");
-                console.log(Profiles.find());
-                return Profiles.find();
+		console.log("!!!");
+		console.log(Players.find().fetch());
+		return Players.find();
         }
 });
 
@@ -53,11 +54,10 @@ Template.Register.events({
 			var email = $('#email').val();
 			var phone = $('#phone').val();
 			var dept = $('#dept').val();
-			Meteor.call('register', [{ StudentID: student_id, Name: name, Year: year, Email: email, Phone: phone, Department: dept }]);
+			Meteor.call('register', [{ StudentId: student_id, Name: name, Year: year, Phone: phone, Department: dept }]);
 			$('#student_id').val('');
 			$('#name').val('');
 			$('#year').val('');
-			$('#email').val('');
 			$('#phone').val('');
 			$('#dept').val('');
 		}
