@@ -1,30 +1,64 @@
 <template name="Register">
-	<input type="file" id="csv-file" name="files"/>
+    <div class="form-group">
+        <label for="csv-file">CSV File input</label>
+        <input type="file" id="csv-file" name="files"/>
+        <p class="help-block">Upload the .csv file here.</p>
+    </div>
 	<input type="submit" id="read" value="read" class="btn btn-success">
 	<input type="button" id="clear" value="clear" class="btn btn-danger">
 	<table class="table">
-		<tr><th>StudentID</th><th>Name</th><th>Year</th><th>Department</th><th>Email</th><th>Phone</th></tr>
-		{{#each participants}}
-		<tr><td>{{StudentID}}</td><td>{{Name}}</td><td>{{Year}}</td><td>{{Department}}</td><td>{{Email}}</td><td>{{Phone}}</td></tr>
-		{{/each}}
+        <thead>
+        <tr><th>StudentID</th><th>Name</th><th>Year</th><th>Department</th><th>Email</th><th>Phone</th></tr>
+        </thead>
+        <tbody>
+        {{#each participants}}
+            <tr><td>{{StudentID}}</td><td>{{Name}}</td><td>{{Year}}</td><td>{{Department}}</td><td>{{Email}}</td><td>{{Phone}}</td></tr>
+        {{/each}}
+        </tbody>
 	</table>
 	<input type="submit" id="submit" value="submit" class="btn btn-primary">
 	<hr>
 	<form>
-		StudentId<input type="text" id="student_id" >
-		Name<input type="text" id="name">
-		year<input type="number" id="year">
-		Email<input type="email" id="email">
-		phone<input type="phone" id="phone">
-		dept<input type="text" id="dept">
-		<input type="button" id="apply" value="submit">
+        <div class="form-group">
+            <label for="student_id">Student ID</label>
+            <input type="text" id="student_id" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="year">Year</label>
+            <input type="number" id="year" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone No.</label>
+            <input type="phone" id="phone" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="dept">Department</label>
+            <input type="text" id="dept" class="form-control">
+        </div>
+		<input type="button" class="btn btn-primary" id="apply" value="submit">
 	</form>
-        <table border="1" width="100%">
-
-        {{#each all_participants}}
+        <table class="table table-striped">
+            <thead>
             <tr>
-                <td>{{_id}}  </td><td> {{student_id}} </td><td> {{name}} </td>
+                <th>ID</th>
+                <th>Student ID</th>
+                <th>Name</th>
             </tr>
-        {{/each}}
+            </thead>
+            <tbody>
+            {{#each all_participants}}
+                <tr>
+                    <td>{{_id}}  </td><td> {{student_id}} </td><td> {{name}} </td>
+                </tr>
+            {{/each}}
+            </tbody>
         </table>
 </template>

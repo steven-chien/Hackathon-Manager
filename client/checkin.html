@@ -1,12 +1,27 @@
 <template name="CheckIn">
 	{{#if currentUser}}
-	<form>
-		<input type="text" id="student_id">
-		<input type="submit" id="submit" value="Go">
-	</form>
-	{{checkedPlayer.student_id}}
-	{{checkedPlayer.name}}
-	<div id="code"></div>
-	<input type="button" id="clear" value="clear">
+        <div class="container">
+            <div class="row">
+                <h1>Hacker Check-in</h1>
+            </div>
+            <div class="row">
+                <form>
+                    <div class="input-group">
+                        <input type="text" id="student_id" class="form-control" placeholder="Student ID">
+            <span class="input-group-btn">
+                <input type="submit" class="btn btn-success" id="submit" value="Go">
+            </span>
+                    </div>
+                </form>
+            </div>
+            {{checkedPlayer.student_id}}
+            {{checkedPlayer.name}}
+            <div class="row">
+                <div id="code"></div>
+            </div>
+            <div class="row" style="margin-top: 20px">
+                <input type="button" id="clear" value="clear" class="btn btn-danger">
+            </div>
+        </div>
 	{{/if}}
 </template>
