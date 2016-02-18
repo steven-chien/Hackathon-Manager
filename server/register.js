@@ -14,6 +14,18 @@ Meteor.methods({
 					group: false,
 					checked: false
 				});
+				var player = Players.findOne({ sid: data[i].StudentId });
+				var url = Meteor.absoluteUrl() + 'vote/' + player._id;
+				console.log(url);
+				try {
+					//var response = HTTP.post('https://www.googleapis.com/urlshortener/v1/url?key='+Meteor.settings.googleApiKey, { data: { "longUrl": url }, headers: { "content-type": "application/json" } });
+					var response = HTTP.post('https://www.googleapis.com/urlshortener/v1/url?key='+Meteor.settings.public.googleApiKey, { data: { "longUrl": url }, headers: { "content-type": "application/json" } });
+					console.log('response: '+response.data.id);
+					Players.update({ sid: data[i].StudentId }, { $set: { url: response.data.id } });
+				}
+				catch(e) {
+					console.log(e);
+				}
 			}
 		}
 	}
