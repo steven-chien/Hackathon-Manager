@@ -3,13 +3,12 @@ Meteor.methods({
 		var userId = Meteor.userId();
 		if(userId) {
 			console.log(members);
-			Players.update({ _id: { $in: members } }, { $set: { group: true } }, { multi: true });
-			Groups.insert({ name: name, members: members });
+			var groupId = Groups.insert({ name: name, members: members });
+			Players.update({ _id: { $in: members } }, { $set: { group: groupId } }, { multi: true });
 		}
 	},
-        delgroup: function(gid) {
-                console.log(gid);
-                var my_group = Groups.remove({_id:gid});
-                console.log(my_group);
+        delGroup: function(groupId) {
+		Players.update({ group: groupId }, { $set: { group: false } }, { multi: true });
+                Groups.remove(groupId);
         }
 });
