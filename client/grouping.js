@@ -1,7 +1,7 @@
 Template.qrScanner.rendered = function() {
 	qrScanner.on('scan', function(err, message) {
 		if (message != null) {
-			HTTP.get('https://www.googleapis.com/urlshortener/v1/url', { params: { "key": Meteor.settings.public.googleApiKey, "shortUrl": message } }, function(err, data) {
+			HTTP.get('https://www.googleapis.com/urlshortener/v1/url', { params: { "key": "AIzaSyAtky8NiKEYjCx0p5hiov5E4FYwctPBoe0", "shortUrl": message } }, function(err, data) {
 				if(!err && data.statusCode==200) {
 					var url = data.data.longUrl;
 					var pattern = new RegExp(Session.get('pattern'), 'g');
@@ -74,17 +74,18 @@ Template.Grouping.events({
 
 		var sid = $('#new-sid').val();
 		var profile = Players.findOne({ sid: sid });
+		console.log(profile);
 
-		if(profile && profile.group==false) {
+		if(profile && profile.group==false && profile.checked==true) {
 			//check if the player is already in other team
-			if(Groups.find({'members':id._id}).count()>0) {
+			if(profile.group!=false) {
 				alert(sid+" already in other groups");
 				return;
 			}
 
 			var members = Session.get('members');
-			if(members.indexOf(id._id)==-1) {
-				members.push(id._id);
+			if(members.indexOf(profile._id)==-1) {
+				members.push(profile._id);
 				Session.set('members', members);
 			}
 		}
