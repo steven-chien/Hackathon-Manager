@@ -10,7 +10,7 @@ Template.CheckIn.helpers({
 			return checked_player;
 		}
 	},
-})
+});
 
 Template.CheckIn.events({
 	'click #submit': function(evt) {
