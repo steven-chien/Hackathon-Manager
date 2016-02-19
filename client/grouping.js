@@ -1,14 +1,16 @@
 Template.qrScanner.rendered = function() {
 	qrScanner.on('scan', function(err, message) {
 		if (message != null) {
+			alert(message);
 			HTTP.get('https://www.googleapis.com/urlshortener/v1/url', { params: { "key": "AIzaSyAtky8NiKEYjCx0p5hiov5E4FYwctPBoe0", "shortUrl": message } }, function(err, data) {
 				if(!err && data.statusCode==200) {
 					var url = data.data.longUrl;
 					var pattern = new RegExp(Session.get('pattern'), 'g');
 					var matched = pattern.exec(url);
 					var profile = Players.findOne(matched[1]);
-					if(profile && profile.group==false) {
+					if(profile)
 						alert(profile.sid+" detected!");
+					if(profile && profile.group==false) {
 						var members = Session.get('members');
 						if(members.indexOf(matched[1])==-1) {
 							members.push(matched[1]);
