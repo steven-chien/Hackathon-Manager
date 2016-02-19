@@ -2,7 +2,7 @@ Template.Polling.helpers({
 	statistics: function() {
 		var userId = Meteor.userId();
 		if(userId) {
-			var result = Session.get('vote_result', data);
+			var result = Session.get('vote_result');
 			return result;
 		}
 	}
@@ -14,7 +14,6 @@ Template.Polling.events({
 		if(userId) {
 			Meteor.call('countVotes', function(err, data) {
 				if(!err && data) {
-					console.log(data);
 					Session.set('vote_result', data);
 				}
 			});
