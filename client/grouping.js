@@ -8,6 +8,7 @@ Template.qrScanner.rendered = function() {
 					var matched = pattern.exec(url);
 					var profile = Players.findOne(matched[1]);
 					if(profile && profile.group==false) {
+						alert(profile.sid+" detected!");
 						var members = Session.get('members');
 						if(members.indexOf(matched[1])==-1) {
 							members.push(matched[1]);
