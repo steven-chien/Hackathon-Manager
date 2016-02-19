@@ -1,7 +1,6 @@
 Template.qrScanner.rendered = function() {
 	qrScanner.on('scan', function(err, message) {
 		if (message != null) {
-			alert(message);
 			HTTP.get('https://www.googleapis.com/urlshortener/v1/url', { params: { "key": "AIzaSyAtky8NiKEYjCx0p5hiov5E4FYwctPBoe0", "shortUrl": message } }, function(err, data) {
 				if(!err && data.statusCode==200) {
 					var url = data.data.longUrl;
