@@ -47,12 +47,15 @@
                 <th>ID</th>
                 <th>Student ID</th>
                 <th>Name</th>
+		<th>Year</th>
+		<th>Phone</th>
+		<th>Dept</th>
             </tr>
             </thead>
             <tbody>
             {{#each all_participants}}
                 <tr>
-                    <td>{{_id}}  </td><td> {{sid}} </td><td> {{name}} </td><td> {{dept}} </td>
+                    <td>{{_id}}  </td><td> {{sid}} </td><td> {{name}} </td><td> {{year}} </td><td> {{phone}} </td><td> {{dept}} </td>
                 </tr>
             {{/each}}
             </tbody>
