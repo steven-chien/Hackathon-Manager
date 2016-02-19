@@ -10,7 +10,7 @@ Template.Vote.rendered = function() {
 			Session.set('valid', true);
 		}
 		//Check if voted or not
-		console.log(data.voted);
+		console.log(data.profile);
 		Session.set('voted', data.voted);
 		Session.set('profile', data.profile);
 		Meteor.subscribe('voteGroups', data.profile.groupId);
@@ -47,11 +47,14 @@ Template.Vote.helpers({
 Template.Vote.events({
 	'click #vote': function(evt) {
 		event.preventDefault();
-		Meteor.call('vote', Session.get('playerId'), this._id, function(err, data) {
-			if(!data) {
-				alert('Error');
-			}
-			Meteor._reload.reload();
-		});
+		var profile = Session.get('profile');
+		if(profile && this._id) {
+			Meteor.call('vote', profile.id, this._id, function(err, data) {
+				if(!data) {
+					alert('Error');
+				}
+				Meteor._reload.reload();
+			});
+		}
 	}
 })

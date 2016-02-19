@@ -6,11 +6,11 @@ Meteor.methods({
 		var player = Players.findOne(playerId);
 
 		// Ensure the id is valid
-		if(player) {
-			Vote.insert({ voter: playerId, vote: groupId });
+		if(player && player.group!=groupId) {
+			Vote.insert({ voter: playerId, vote: groupId, time: new Date() });
 		}
 		else {
-			throw new Meteor.Error("Invalid playerID", "Player ID is not valid.");
+			throw new Meteor.Error(400, "Player ID is not valid.");
 		}
 
 		// Add vote in Vote
@@ -24,14 +24,17 @@ Meteor.methods({
                 if(player==null) {
 			throw new Meteor.Error(400,'ID not registered!');
                 }
-                var voted = Vote.findOne({voter:playerId},{sort:{$natural:-1},limit:1});
+
+		var profile = { id: player._id, sid: player.sid, name: player.name, groupId: player.group };
+                var voted = Vote.findOne({ voter:playerId }, { sort: { $natural: -1 }, limit:1 });
+
                 if(typeof voted=='undefined') {
-			return { voted: undefined, profile: { sid: player.sid, name: player.name } };
+			return { voted: undefined, profile: profile };
 		}
 		else {
 			var castedVote = Groups.findOne(voted.vote);
 			if(castedVote)
-				return { voted: castedVote.name, profile: { sid: player.sid, name: player.name, groupId: player.group } };
+				return { voted: castedVote.name, profile: profile };
 		}
 	}
 });
