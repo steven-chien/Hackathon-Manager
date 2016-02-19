@@ -20,7 +20,6 @@ iron:router
 accounts-password
 harrison:papa-parse
 hitchcott:qr-scanner
-twbs:bootstrap
 ian:accounts-ui-bootstrap-3
 meteorhacks:kadira
 http

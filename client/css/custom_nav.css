@@ -4,6 +4,10 @@
     -o-transition: .5s ease-in-out;
     transition: .5s ease-in-out;
 }
+.navbar-default{
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
 .navbar_custom{
     border: none;
     padding: 0;
