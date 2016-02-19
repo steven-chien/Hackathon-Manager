@@ -75,7 +75,7 @@ Template.Grouping.events({
 		evt.preventDefault();
 		Meteor.subscribe('playerList');
 
-		var sid = $('#new-sid').val();
+		var sid = $('#new-sid').val().substr(0,9).toLowerCase();;
 		var profile = Players.findOne({ sid: sid });
 		console.log(profile);
 
@@ -97,6 +97,7 @@ Template.Grouping.events({
 		}
 
 		$('#new-sid').val('');
+		$('#new-sid').focus();
 	},
 	'click .player': function(evt) {
 		var userId = Meteor.userId();
@@ -118,6 +119,9 @@ Template.Grouping.events({
 			if(name!='' && members.length!=0) {
 				Meteor.call('addGroup', name, members);
 				Session.set('members', []);
+				$('#new-sid').val('');
+				$('#name').val('');
+				$('#name').focus();
 			}
 		}
 	},

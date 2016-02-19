@@ -18,20 +18,19 @@
 				    <div class="input-group">
 					<input type="text" id="new-sid" class="form-control" placeholder="Search Student ID...">
 					<span class="input-group-btn">
-					    <button class="btn btn-primary" id="add" type="button">Add</button>
+					    <button class="btn btn-primary" id="add" type="submit">Add</button>
 					</span>
 				    </div>
-                    <div style="max-width: 500px; margin-left: auto; margin-right: auto; margin-top: 20px;
+		                    <div style="max-width: 500px; margin-left: auto; margin-right: auto; margin-top: 20px;
                     margin-bottom: 20px;">
                         {{> qrScanner w=1024 h=768}}
                     </div>
-                    <input type="button" id="scan" value="scan" class="btn btn-primary">
 				    <ul>
 					{{#each groupmates}}
 					    <li class="player" id="{{@index}}">{{sid}}</li>
 					{{/each}}
 				    </ul>
-				    <input type="submit" id="submit" value="submit" class="btn btn-success">
+				    <input type="button" id="submit" value="submit" class="btn btn-success">
 				</form>
 			    </div>
 			</div>
@@ -51,7 +50,7 @@
 					<div class="col-sm-2">{{name}}</div>
 					<div class="col-sm-8">{{{namelist}}}</div>
 					<div class="col-sm-2">
-                                            <button id="delgroup" action="submit">Delete</button>
+                                            <button id="delgroup" action="submit" class="btn btn-danger">Delete</button>
                                         </div>
 				    </div>
 				    <hr>
