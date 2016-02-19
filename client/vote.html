@@ -1,6 +1,6 @@
 <template name="Vote">
-vote
 {{#if valid}}
+<p>Hi! {{profile.name}}({{profile.sid}})</p>
     {{#if voted}}
         <p>You have already voted to {{votedTo}}</p>
     {{/if}}

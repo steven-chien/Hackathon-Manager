@@ -17,7 +17,8 @@ Meteor.publish('groupList', function() {
 	}
 });
 
-Meteor.publish('voteGroups', function() {
-	var list = Groups.find({}, { fields: { members: 0  }  });
+Meteor.publish('voteGroups', function(excludeGroup) {
+	var list = Groups.find({ _id: { $ne: excludeGroup } }, { fields: { members: 0  }  });
+	console.log(list.fetch());
 	return list;
 });

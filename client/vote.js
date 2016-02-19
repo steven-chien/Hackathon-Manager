@@ -1,39 +1,46 @@
 Template.Vote.rendered = function() {
-        var my_id = Router.current().params._id;
-	Meteor.call('voted', my_id, function(err, data) {
-                //Ensure the id is valid
-                if(err) {
-                    console.log(err);
-	      	    Session.set('valid', false);
-                    return;
-                } else {
-	      	    Session.set('valid', true);
-                }
-                //Check if voted or not
-                Session.set('voted', data);
-                Session.set('playerId', my_id);
-                Meteor.subscribe('voteGroups');
+	var playerId = Router.current().params._id;
+	Meteor.call('voted', playerId, function(err, data) {
+		//Ensure the id is valid
+		if(err) {
+			console.log(err);
+			Session.set('valid', false);
+			return;
+		} else {
+			Session.set('valid', true);
+		}
+		//Check if voted or not
+		console.log(data.voted);
+		Session.set('voted', data.voted);
+		Session.set('profile', data.profile);
+		Meteor.subscribe('voteGroups', data.profile.groupId);
 	});
 };
 
 Template.Vote.helpers({
         // Ensure the id is valid
         'valid': function() {
-                return Session.get('valid');
+		var state = Session.get('valid');
+		if(state)
+			return state;
         },
         // Return the player has voted or not
 	'voted': function() {
 		if(typeof Session.get('voted')=='undefined')
-                    return false;
-                return true;
+			return false;
+		return true;
 	},
         // Return name of the group which the player has voted
 	'votedTo': function() {
-                return Session.get('voted');
+		return Session.get('voted');
 	},
         // Return the group list
 	'voteGroups': function() {
 		return Groups.find();
+	},
+	'profile': function() {
+		var profile = Session.get('profile');
+		return profile;
 	}
 });
 
