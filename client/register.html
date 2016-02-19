@@ -50,12 +50,13 @@
 		<th>Year</th>
 		<th>Phone</th>
 		<th>Dept</th>
+		<th>Checked</th>
             </tr>
             </thead>
             <tbody>
             {{#each all_participants}}
                 <tr>
-                    <td>{{_id}}  </td><td> {{sid}} </td><td> {{name}} </td><td> {{year}} </td><td> {{phone}} </td><td> {{dept}} </td>
+                    <td>{{_id}}  </td><td> {{sid}} </td><td> {{name}} </td><td> {{year}} </td><td> {{phone}} </td><td> {{dept}} </td><td> {{#if checked}}✓{{else}}✗{{/if}} </td>
                 </tr>
             {{/each}}
             </tbody>
