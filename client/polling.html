@@ -1,3 +1,9 @@
 <template name="Polling">
-voting
+<input type="submit" id="count" value="count" class="btn btn-success">
+<table>
+<th>Group Name</th><th>Votes</th>
+{{#each statistics}}
+<tr><td>{{this.name}}</td><td>{{this.count}}</td></tr>
+{{/each}}
+</table>
 </template>
