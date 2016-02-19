@@ -7,6 +7,7 @@ Template.CheckIn.helpers({
 		var userId = Meteor.userId();
 		if(userId) {
 			var checked_player = Session.get('checked_in');
+			console.log(checked_player);
 			return checked_player;
 		}
 	},
@@ -17,14 +18,13 @@ Template.CheckIn.events({
 		evt.preventDefault();
 		$('#code').empty();
 		Session.set('checked_in', undefined);
-		var student_id = $('#student_id').val();
+		var student_id = $('#student_id').val().substr(0,9).toLowerCase();
 		Meteor.call('checkin', student_id, function(err, data) {
 			if (err) {
 				alert(err);
 				$('#student_id').val('');
 			}
 			else {
-				console.log(data.data);
 				Session.set('checked_in', data.data);
 				$('#student_id').val('');
 				$('#student_id').focus();
