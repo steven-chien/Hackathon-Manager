@@ -1,9 +1,22 @@
 <template name="Polling">
-<input type="submit" id="count" value="count" class="btn btn-success">
-<table>
-<th>Group Name</th><th>Votes</th>
-{{#each statistics}}
-<tr><td>{{this.name}}</td><td>{{this.count}}</td></tr>
-{{/each}}
-</table>
+    <div class="container">
+        <div class="row">
+            <h1>Pop Polling</h1>
+        </div>
+        <div class="row">
+            <input type="submit" id="count" value="count" class="btn btn-primary">
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                <th>Group Name</th><th>Votes</th>
+                </thead>
+                <tbody>
+                {{#each statistics}}
+                    <tr><td>{{this.name}}</td><td>{{this.count}}</td></tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </template>

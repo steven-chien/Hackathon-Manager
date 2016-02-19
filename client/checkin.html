@@ -14,10 +14,19 @@
                     </div>
                 </form>
             </div>
-            {{checkedPlayer.sid}}
-            {{checkedPlayer.name}}
-            {{checkedPlayer.dept}}
-            {{checkedPlayer.phone}}
+            <table class="table">
+                <thead>
+                <tr><th>Student ID</th><th>Name</th><th>Department</th><th>Phone</th></tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{checkedPlayer.sid}}</td>
+                    <td>{{checkedPlayer.name}}</td>
+                    <td>{{checkedPlayer.dept}}</td>
+                    <td>{{checkedPlayer.phone}}</td>
+                </tr>
+                </tbody>
+            </table>
             <a href="{{checkedPlayer.url}}" target="blank_">{{checkedPlayer.url}}</a>
             <div class="row">
                 <div id="code"></div>

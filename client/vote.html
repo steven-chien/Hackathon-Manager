@@ -1,15 +1,18 @@
 <template name="Vote">
-{{#if valid}}
-<p>Hi! {{profile.name}}({{profile.sid}})</p>
-    {{#if voted}}
-        <p>You have already voted to {{votedTo}}</p>
-    {{/if}}
-        <ul>
-        {{#each voteGroups}}
-            <li>{{name}} <button id="vote" action="submit">Vote</button></li>
-        {{/each}}
-        </ul>
-{{else}}
-    <p>Invalid url.</p>
-{{/if}}
+    <div class="container">
+        {{#if valid}}
+            <p>Hi! {{profile.name}}({{profile.sid}})</p>
+            {{#if voted}}
+                <div class="alert alert-warning" role="alert">You have already voted to {{votedTo}}</div>
+            {{/if}}
+            <ul class="list-group">
+                {{#each voteGroups}}
+                    <li class="list-group-item">{{name}} <button id="vote" action="submit" class="btn btn-success">Vote</button></li>
+                {{/each}}
+            </ul>
+        {{else}}
+            <h1>Error 400</h1>
+            <div class="alert alert-danger" role="alert"><strong>400</strong> Invalid URL :(</div>
+        {{/if}}
+    </div>
 </template>
