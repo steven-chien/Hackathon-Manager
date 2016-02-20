@@ -12,10 +12,17 @@ Template.Register.helpers({
 		}
 	},
         all_participants: function() {
-		console.log("!!!");
-		console.log(Players.find().fetch());
-		return Players.find();
-        }
+		var userId = Meteor.userId();
+		if(userId)
+			return Players.find();
+        },
+	playerCount: function() {
+		var userId = Meteor.userId();
+		if(userId) {
+			var checkCount = Players.find({ checked: true }).count();
+			return checkCount;
+		}
+	}	
 });
 
 Template.Register.events({
