@@ -7,8 +7,12 @@ Template.qrScanner.rendered = function() {
 					var pattern = new RegExp(Session.get('pattern'), 'g');
 					var matched = pattern.exec(url);
 					var profile = Players.findOne(matched[1]);
-					if(profile)
-						alert(profile.sid+" detected!");
+					//if(profile)
+					//	alert(profile.sid+" detected!");
+					if(profile.checked!=true)
+						alert(profile.sid+' Not checked in!');
+					if(profile.group!=false)
+						alert(profile.sid+' Already grouped!');
 					if(profile && profile.checked==true && profile.group==false) {
 						var members = Session.get('members');
 						if(members.indexOf(matched[1])==-1) {
@@ -125,7 +129,7 @@ Template.Grouping.events({
 		}
 	},
         'click #delgroup': function(evt) {
-		event.preventDefault();
+		evt.preventDefault();
 		Meteor.call('delGroup', this._id, function(err, data) {
 	//		Meteor._reload.reload();
 			console.log('del');
