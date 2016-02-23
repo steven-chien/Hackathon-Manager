@@ -5,11 +5,13 @@
             {{#if voted}}
                 <div class="alert alert-warning" role="alert">You have already voted to {{votedTo}}</div>
             {{/if}}
-            <ul class="list-group">
+		<table class="table">
+		<tbody>
                 {{#each voteGroups}}
-                    <li class="list-group-item">{{name}} <button id="vote" action="submit" class="btn btn-success">Vote</button></li>
+		<tr><td>{{name}}</td><td><button id="vote" action="submit" class="btn btn-success">vote</button></td></tr>
                 {{/each}}
-            </ul>
+		</tbody>
+		</table>
         {{else}}
             <h1>Error 400</h1>
             <div class="alert alert-danger" role="alert"><strong>400</strong> Invalid URL :(</div>
